@@ -1,9 +1,4 @@
-{% extends "layouts/base.html" %}
 
-{% block title %} Register {% endblock %} 
-
-<!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
@@ -49,12 +44,21 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-md-3 px-md-1">
+                        <div class="form-group">
+                          <label>Password check</label>
+                          <input class="form-control" id="pwd_create" name="password" required="" type="password" value="">
+                        </div>
+                      </div>
+                    </div>
                     
                 </div>
                 <div class="card-footer">
                   <button type="submit" name="register" class="btn btn-fill btn-primary">Register</button>
                   &nbsp; &nbsp;
-                  Have an account? <a href="/login.html" class="text-primary">Login</a>
+                  Have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
                 </div>
 
               </form>

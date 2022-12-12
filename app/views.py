@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, SignUpForm
 
 # Create your views here.
@@ -17,7 +17,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("indexo")
+                return redirect("index")
             else:
                 msg = 'Invalid credentials'
         else:
@@ -50,9 +50,9 @@ def register_user(request):
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
-def indexo(request) :
-    return render (request, "accounts/indexo.html")
+def index(request) :
+    return render (request, "home/index.html")
 
-def logout(request) :
-    auth.logout(request)
-    return redirect('/')
+def logout_user(request) :
+    logout(request)
+    return redirect ("register")
