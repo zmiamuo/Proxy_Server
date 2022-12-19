@@ -326,7 +326,6 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
-<<<<<<< HEAD
                             <form method="POST" action="{% url 'home' %}" >
                             {% csrf_token %}
                                 <div class="blocked-site">
@@ -342,30 +341,6 @@
                                 {% else %}
                                     <p>No websites to display</p>
                                 {% endif %}
-
-                               
-=======
-                           
-                            <div>
-                                <form method="POST"  class="blocked-site">
-                                    {% csrf_token %}
-                                
-                                    {{form1.as_p}}
-                                <input type="text" name="blocked" placeholder="websites" required="required">
-                                <input type="submit" value="add" name="add_websites" class="btn btn-fill btn-primary">
-                                
-                            </form>
-                            </div>
-
-                            <div class="text-blocked">
-                                 {% for sites in blocked_websites %}
-                                    <p>{{sites.blocked}}</p>
-                                    {% endfor %}
-
-                                
-                                
-                                   
->>>>>>> refs/remotes/origin/main
 
                                 
                             </div>
