@@ -1,0 +1,190 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<style>
+.table-responsive{
+  height:100%;
+  overflow: scroll;
+}
+
+.time,.username {
+  text-align:left;   
+}
+.username {
+  padding-left:80px !important;
+}
+.text-right{
+  text-align:left;
+}
+th{
+  text-align:center;
+}
+.le{
+
+}
+.ip-add,.username{
+  text-align:left !important;
+
+}
+
+.time {
+  margin-let:20px !important;
+}
+.left_th{
+  text-align:left;
+  margin-left:30px;
+}
+.left_ap{
+  text-align:center;
+  padding-right: 100px !important;
+}
+</style>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> Simple Table</h4>
+          </div>
+          <div class="card-body">
+            <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                <tr>
+                    <th class="left_th"> 
+                        TIME
+                    </th>
+                    <th>
+                       USERNAME
+                    </th>
+                    <th class="left_ap">
+                        IP ADDRESS
+                    </th>
+                    <th  >
+                        ACTION
+                    </th>
+                </tr>
+                </thead>
+            </table>
+            <div class="table-responsive">
+                <table class="table tablesorter " id="">
+                    
+                    <tbody>
+                    
+                    <tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add" >
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                            <span >GET http://localhost:8000 tcp<span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                            <span >GET http://localhost:8000 tcp<span>
+                        </td>
+                    </tr><tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                          <span >GET http://localhost:8000 tcp<span>
+                          </td>
+                    </tr><tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                          <span >GET http://localhost:8000 tcp<span>
+                          </td>
+                    </tr>
+                    <tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                          <span >GET http://localhost:8000 tcp<span>
+                          </td>
+                    </tr>
+                    <tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                          <span >GET http://localhost:8000 tcp<span>
+                          </td>
+                    </tr>
+                    <tr>
+                        <td class="time">
+                            12:00:01:00:00:00
+                        </td>
+                        <td class="username">
+                            fresco anas
+                        </td>
+                        <td class="ip-add">
+                            127.0.0.1
+                        </td>
+                        <td class="text-right">
+                          <span >GET http://localhost:8000 tcp<span>
+                          </td>
+                    </tr>
+
+                   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

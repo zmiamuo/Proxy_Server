@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, SignUpForm
+from .models import website
 
 # Create your views here.
 
@@ -51,7 +52,7 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 def index(request) :
-    return render (request, "home/index.html")
+    return render (request, "home/index.html",{'people': website.objects.all()})
 
 def logout_user(request) :
     logout(request)

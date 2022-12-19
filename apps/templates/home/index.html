@@ -1,0 +1,389 @@
+{% extends "layouts/base.html" %}
+{% load replace %}
+{% load blocker %}
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+    
+    .first{
+     display:grid; /* le fameux */
+    grid-template-columns:50% 50%; /* 3 colonnes de largeur différente */
+    
+    gap:12px; /* gouttière (mettre les deux lignes)*/
+    padding:0; 
+   
+    
+   
+    }
+    /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+   
+    .col-12 {
+       
+        height: 150px;
+    }
+    .col-lg-6 {
+      flex: 0 0 50%;
+      max-width: 100% !important;
+      
+
+    }
+    .table-responsive{
+        height:210px;
+        overflow: scroll;
+    }
+    td{
+        font-size:10px;
+        text-align:right;
+        padding:15px;
+
+    }
+    .time,.username,.left_th{
+        text-align:left;   
+    }
+    .text-right{
+        text-align:right;
+    }
+    th{
+        text-align:center;
+    }
+    .le{
+        
+    }
+    .blocked-site{
+       display:flex;
+       flex-wrap:wrap;
+       margin-bottom:30px;
+       justify-content:space-between;
+       
+
+    }
+    .text-blocked{
+        height:70%;
+        overflow:auto;
+        border:solid ;
+        border-width:0.1 px;
+        border-radius:10px;
+        padding:10px;
+        padding-right:30px;
+    }
+    .chart-area{
+       padding:20px;
+       padding-top:5px;
+    }
+    .new {
+        height:55%;
+    }
+    [type=text]{
+    border-radius:7px;
+    background-color:#171531;
+    padding:1px;
+       
+       
+    }
+    .text {
+       width:130px;
+       border-radius:7px;
+       background-color:#171531;
+       padding:10px;
+    }
+    .proxy{
+        height:85%;
+    }
+    .text-blocked p:hover{
+        opacity:70%;
+    }
+
+     
+</style>
+
+    <div class="content">
+        <div class="row first">
+            <div class="col-12">
+                <div class="card card-chart">
+                    <div class="card-header ">
+                        <div class="row">
+                            <div class="col-sm-6 text-left">
+                                <h5 class="card-category">YOUR DATA IS SAFE</h5>
+                                <h2 class="card-title">DATA USAGE</h2>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <canvas id="chartBig1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="card-title"> LOGS GENERATED</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <table class="table tablesorter " id="">
+                            <thead class=" text-primary">
+                            <tr>
+                                <th > 
+                                    TIME
+                                </th>
+                                <th>
+                                   USERNAME
+                                </th>
+                                <th class="left_th">
+                                    IP ADDRESS
+                                </th>
+                                <th class="left_th" >
+                                    ACTION
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <div class="table-responsive">
+                            <table class="table tablesorter " id="">
+                                
+                                <tbody>
+                                
+                                <tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr><tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr><tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time">
+                                        12:00:01:00:00:00
+                                    </td>
+                                    <td class="username">
+                                        fresco anas
+                                    </td>
+                                    <td class="ip-add">
+                                        127.0.0.1
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
+                                    </td>
+                                </tr>
+
+                               
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        
+                        <h3 class="card-title"> Blocked websites</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <form method="POST" action="{% url 'home' %}" >
+                            {% csrf_token %}
+                                <div class="blocked-site">
+                                    <input type="text" name="blocked" placeholder="website URL">
+                                    <input type="submit" value="add" name="submit" class="btn btn-fill btn-primary">
+                                </div>
+                            </form>
+                            <div class="text-blocked">
+                                {% if weburls %}
+                                    {% for w in weburls %}
+                                        <p href="{{ w.website_url }}">{{ w.website_url | replace }} {{ w.website_url | blocker }}</p>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No websites to display</p>
+                                {% endif %}
+
+                               
+
+                                
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h3 class="card-title">Generate proxys</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <div class="blocked-site">
+                                <input class="text" type="text" name="blocked" placeholder="Duration">
+                                <input class="text" type="text" name="blocked" placeholder="Usage">
+                            </div>
+                            <h5 class="card-category"> Authorized ip adddress</h5>
+
+                            <div class="text-blocked new">
+                                
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                             
+                           
+    
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h3 class="card-title">proxys</h3>
+                        
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <h5 class="card-category"> proxys generated</h5>
+                            <br>
+                           
+                            <div class="text-blocked proxy">
+                                
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                                <p>1.200.21.22</p>
+                             
+                           
+    
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

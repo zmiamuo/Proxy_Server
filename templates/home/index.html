@@ -54,8 +54,18 @@
           </div>
           <div class="card-body">
             <div class="chart-area">
-              <input type="text" name="website" placeholder="website URL" style="border: thick white; margin-top: 10px; background-color: transparent;"/>
-              <input type="button" class="click" id="click" value="Click" style="width: 45px; margin-top: 1.5%; height: 20px; text-align: center; color: white; background: #23b7e5; font-size: 13px; border-color: #23b7e5; border-radius:2px; padding: 0px; ">
+              <input type="text" name="website" placeholder="website URL" style="border: solid; border-radius:15px; border-width: thin; border-color:white; margin-top: 10px; background-color: transparent;"/>
+              <input type="button" class="click" id="click" value="Block" style="width: 60px; margin-top: 10px; height: 20px; text-align: center; color: white; background: #aa50e5; font-size: 13px; border-color: #aa50e5; border-radius:15px; padding: 0px; "><br></br>
+              <div class="vertical-menu" style=" height: 150px;overflow-y: scroll;">
+                {% if website.objects.all %}
+                <a style="background-color: transparent;display: block;" href="{{websites.website_url}}">test0</a>
+                {% for w in website.objects.all %}
+                <a style="background-color: transparent;display: block;" href="{{w.website_url}}">test1</a>
+                {% endfor %}
+                {% else %}
+                <h5 class="card-category" style="text-align: center;">No websites to display</h5>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
@@ -68,7 +78,23 @@
           </div>
           <div class="card-body">
             <div class="chart-area">
-              <canvas id="CountryChart"></canvas>
+              <input type="text" name="duration" placeholder="Duration" style="float:left; width: 130px; padding:8px; display:inline-block;border: solid; border-radius:15px; border-width: thin; border-color:white; background-color: transparent;"/>
+              <input type="text" name="usage" placeholder="Usage" style="float: right; width: 130px; padding:8px; display:inline-block; border: solid; border-radius:15px; border-width: thin; border-color:white; background-color: transparent;"/><br></br>
+              <div class="vertical-menu" style=" height: 150px; margin-top: 15px; overflow-y: scroll;">
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+              </div>
+              <input type="button" class="click" id="click" value="Generate" style="width: 70px; height: 20px; text-align: center; color: white; background: #aa50e5; font-size: 13px; border-color: #aa50e5; border-radius:15px; padding: 0px; ">
             </div>
           </div>
         </div>
@@ -80,8 +106,22 @@
             <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>Proxies generated</h3>
           </div>
           <div class="card-body">
-            <div class="chart-area"> 
-             
+            <div class="chart-area">
+              <h5 class="card-category">Proxies generated</h5>
+              <div class="vertical-menu" style=" height: 150px; margin-top: 15px; overflow-y: scroll;">
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+                <a style="background-color: transparent;display: block;" href="#">127.0.0.1</a>
+              </div>
             </div>
           </div>
         </div>
@@ -123,11 +163,7 @@
                       <p class="title">Update the Documentation</p>
                       <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
                     </td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
-                        <i class="tim-icons icon-pencil"></i>
-                      </button>
-                    </td>
+                    
                   </tr>
                   <tr>
                     <td>
@@ -151,16 +187,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="checkbox" value="">
-                          <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                        </label>
-                      </div>
-                    </td>
+                    
                     <td>
                       <p class="title">Solve the issues</p>
                       <p class="text-muted">Fifty percent of all respondents said they would be more likely to shop at a company </p>
