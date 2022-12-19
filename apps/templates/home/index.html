@@ -8,7 +8,49 @@
 
 {% block content %}
 <style>
-    
+    select {
+        /* Reset Select */
+        appearance: none;
+        outline: 0;
+        border: 0;
+        box-shadow: none;
+        /* Personalize */
+        flex: 1;
+        padding: 0 1em;
+        color: #fff;
+        background-color: #171531;
+        background-image: none;
+        cursor: pointer;
+      }
+      /* Remove IE arrow */
+      select::-ms-expand {
+        display: none;
+      }
+      /* Custom Select wrapper */
+      .select {
+        position: relative;
+        display: flex;
+        width: 20em;
+        height: 3em;
+        border-radius: .25em;
+        overflow: hidden;
+      }
+      /* Arrow */
+
+      .select::after {
+        content: '\25BC';
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1em;
+        background-color: #34495e;
+        transition: .25s all ease;
+        pointer-events: none;
+      }
+      /* Transition */
+      .select:hover::after {
+        color: #e14eca;
+      }
     .first{
      display:grid; /* le fameux */
     grid-template-columns:50% 50%; /* 3 colonnes de largeur différente */
@@ -95,10 +137,11 @@
     .new {
         height:55%;
     }
-    [type=text]{
+    [type=number],[type=text]{
     border-radius:7px;
     background-color:#171531;
     padding:1px;
+    color:white;
        
        
     }
@@ -114,7 +157,7 @@
     .text-blocked p:hover{
         opacity:70%;
     }
-
+ 
      
 </style>
 
@@ -283,6 +326,7 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
+<<<<<<< HEAD
                             <form method="POST" action="{% url 'home' %}" >
                             {% csrf_token %}
                                 <div class="blocked-site">
@@ -300,6 +344,28 @@
                                 {% endif %}
 
                                
+=======
+                           
+                            <div>
+                                <form method="POST"  class="blocked-site">
+                                    {% csrf_token %}
+                                
+                                    {{form1.as_p}}
+                                <input type="text" name="blocked" placeholder="websites" required="required">
+                                <input type="submit" value="add" name="add_websites" class="btn btn-fill btn-primary">
+                                
+                            </form>
+                            </div>
+
+                            <div class="text-blocked">
+                                 {% for sites in blocked_websites %}
+                                    <p>{{sites.blocked}}</p>
+                                    {% endfor %}
+
+                                
+                                
+                                   
+>>>>>>> refs/remotes/origin/main
 
                                 
                             </div>
@@ -315,26 +381,35 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
+                        <form method="POST">
+                                {% csrf_token %}
+                                {{form2.as_p}}
                             <div class="blocked-site">
-                                <input class="text" type="text" name="blocked" placeholder="Duration">
-                                <input class="text" type="text" name="blocked" placeholder="Usage">
+                                <input class="text" type="number" name="Duration" placeholder="Duration" required="required">
+                                <input class="text" type="number" name="Usage" placeholder="Usage" required="required">
                             </div>
                             <h5 class="card-category"> Authorized ip adddress</h5>
+                            <div class="select">
+                                <select name="ip_address">
+                                    {% for  x in available_ips %}
+                                    <option value={{x.Availaible_ip}}>{{x.Availaible_ip}}</option>
+                                    {% endfor %}
+                                 
+                                </select>
+                              </div>
+                              <br>
 
-                            <div class="text-blocked new">
-                                
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
+                              <input style="width:100%; text-align:center"  type="submit" value="Generate" name="generate" class="btn btn-fill btn-primary generate">
+                        </form>
+
+
+                            
+  
                              
                            
     
                             
-                        </div>
+                       
                         </div>
                     </div>
                 </div>
@@ -353,15 +428,10 @@
                            
                             <div class="text-blocked proxy">
                                 
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
-                                <p>1.200.21.22</p>
+                                {% for x in generated_proxy  %}
+                                <p> {{x.ip_address}} </p>
                              
-                           
+                                {% endfor %}
     
                             
                         </div>

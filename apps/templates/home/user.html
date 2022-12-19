@@ -14,8 +14,10 @@
           <div class="card-header">
             <h5 class="title">Edit Profile</h5>
           </div>
+          <form method="post" action="{% url 'updateuser' %}">
+          {% csrf_token %}
           <div class="card-body">
-         
+            
               <div class="row">
                 <div class="col-md-5 pr-md-1">
                   <div class="form-group">
@@ -45,11 +47,19 @@
                   </div>
                 </div>
               </div>
-           
+              <div class="row">
+                <div class="col-md-6 pl-md-1" style="margin-left: 12px;">
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="{{user.password}}" >
+                  </div>
+                </div>
+              </div>
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-fill btn-primary">Save</button>
           </div>
+        </form>
         </div>
       </div>
       <div class="col-md-4">
