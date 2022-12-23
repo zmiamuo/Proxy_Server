@@ -14,11 +14,17 @@ class website(models.Model) :
 
 
 class DurationUsage(models.Model):
-    duration=models.IntegerField(max_length=4)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    duration=models.IntegerField()
     usage=models.IntegerField()
     ip_address=models.CharField(max_length=255)
+    def __str__(self):
+        return self.author
 
 
 class Availaible_ip(models.Model):
     Availaible_ip=models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.Availaible_ip
 

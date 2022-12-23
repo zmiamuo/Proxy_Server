@@ -13,8 +13,15 @@ class Adminwebsite(admin.ModelAdmin):
 
 admin.site.register(website, Adminwebsite)
 
+class AdminDurationUsage(admin.ModelAdmin):
+    model = DurationUsage
+    list_display = ('id','author', 'duration', 'usage','ip_address')
 
-admin.site.register(DurationUsage)
-admin.site.register(Availaible_ip)
+admin.site.register(DurationUsage,AdminDurationUsage)
+
+class AdminAvailable_ip(admin.ModelAdmin):
+    model = Availaible_ip
+    list_display = ('id','Availaible_ip')
+admin.site.register(Availaible_ip,AdminAvailable_ip)
 
 

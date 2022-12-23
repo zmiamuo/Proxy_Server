@@ -330,13 +330,13 @@
                             {% csrf_token %}
                                 <div class="blocked-site">
                                     <input type="text" name="blocked" placeholder="website URL">
-                                    <input type="submit" value="add" name="submit" class="btn btn-fill btn-primary">
+                                    <input type="submit" value="add" name="add_websites" class="btn btn-fill btn-primary">
                                 </div>
                             </form>
                             <div class="text-blocked">
-                                {% if weburls %}
-                                    {% for w in weburls %}
-                                        <p href="{{ w.website_url }}">{{ w.website_url | replace }} {{ w.website_url | blocker }}</p>
+                                {% if blocked_websites %}
+                                    {% for w in blocked_websites %}
+                                        <p href="{{ w.website_url}}">{{ w.website_url | replace }}</p>
                                     {% endfor %}
                                 {% else %}
                                     <p>No websites to display</p>
