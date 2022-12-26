@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+import time
 
 # Create your models here.
 class website(models.Model) :
@@ -28,3 +30,14 @@ class Availaible_ip(models.Model):
     def __str__(self):
         return self.Availaible_ip
 
+
+
+class logs_generated(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    date=models.CharField(default=datetime.now().strftime("%H:%M:%S"),max_length=255)
+    username=models.CharField(max_length=50)
+    ip_address=models.CharField(max_length=50)
+    action=models.CharField(max_length=255)
+
+
+    

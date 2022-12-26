@@ -1,6 +1,5 @@
 {% extends "layouts/base.html" %}
 {% load replace %}
-{% load blocker %}
 {% block title %} Dashboard {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
@@ -83,7 +82,7 @@
    
     .col-12 {
        
-        height: 150px;
+        height: 120px;
     }
     .col-lg-6 {
       flex: 0 0 50%;
@@ -92,12 +91,12 @@
 
     }
     .table-responsive{
-        height:210px;
+        height:250px;
         overflow: scroll;
     }
     td{
         font-size:10px;
-        text-align:right;
+        text-align:center;
         padding:15px;
 
     }
@@ -161,262 +160,159 @@
      
 </style>
 
-    <div class="content">
-        <div class="row first">
-            <div class="col-12">
-                <div class="card card-chart">
-                    <div class="card-header ">
-                        <div class="row">
-                            <div class="col-sm-6 text-left">
-                                <h5 class="card-category">YOUR DATA IS SAFE</h5>
-                                <h2 class="card-title">DATA USAGE</h2>
-                            </div>
-                            
+<div class="content">
+    <div class="row first">
+        <div class="col-12">
+            <div class="card card-chart">
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <h5 class="card-category">YOUR DATA IS SAFE</h5>
+                            <h2 class="card-title">DATA USAGE</h2>
                         </div>
+                        
                     </div>
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="chartBig1"></canvas>
-                        </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="chartBig1"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="card ">
-                    <div class="card-header">
-                        <h4 class="card-title"> LOGS GENERATED</h4>
-
-                    </div>
-                    <div class="card-body">
-                        <table class="table tablesorter " id="">
-                            <thead class=" text-primary">
-                            <tr>
-                                <th > 
-                                    TIME
-                                </th>
-                                <th>
-                                   USERNAME
-                                </th>
-                                <th class="left_th">
-                                    IP ADDRESS
-                                </th>
-                                <th class="left_th" >
-                                    ACTION
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>
-                        <div class="table-responsive">
-                            <table class="table tablesorter " id="">
-                                
-                                <tbody>
-                                
-                                <tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr><tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr><tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="time">
-                                        12:00:01:00:00:00
-                                    </td>
-                                    <td class="username">
-                                        fresco anas
-                                    </td>
-                                    <td class="ip-add">
-                                        127.0.0.1
-                                    </td>
-                                    <td class="text-right">
-                                        <span style="font-size:10px">GET http://localhost:8000 tcp<span>
-                                    </td>
-                                </tr>
-
-                               
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        
-                        <h3 class="card-title"> Blocked websites</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <form method="POST" action="{% url 'home' %}" >
-                            {% csrf_token %}
-                                <div class="blocked-site">
-                                    <input type="text" name="blocked" placeholder="website URL">
-                                    <input type="submit" value="add" name="add_websites" class="btn btn-fill btn-primary">
-                                </div>
-                            </form>
-                            <div class="text-blocked">
-                                {% if blocked_websites %}
-                                    {% for w in blocked_websites %}
-                                        <p href="{{ w.website_url}}">{{ w.website_url | replace }}</p>
-                                    {% endfor %}
-                                {% else %}
-                                    <p>No websites to display</p>
-                                {% endif %}
+        <div class="col-lg-6 col-md-12">
+            <div class="card ">
+                <div class="card-header">
+                    <h4 class="card-title"> LOGS GENERATED</h4>
 
-                                
-                            </div>
-                           
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        <h3 class="card-title">Generate proxys</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-area">
-                        <form method="POST">
-                                {% csrf_token %}
-                                {{form2.as_p}}
-                            <div class="blocked-site">
-                                <input class="text" type="number" name="Duration" placeholder="Duration" required="required">
-                                <input class="text" type="number" name="Usage" placeholder="Usage" required="required">
-                            </div>
-                            <h5 class="card-category"> Authorized ip adddress</h5>
-                            <div class="select">
-                                <select name="ip_address">
-                                    {% for  x in available_ips %}
-                                    <option value={{x.Availaible_ip}}>{{x.Availaible_ip}}</option>
-                                    {% endfor %}
-                                 
-                                </select>
-                              </div>
-                              <br>
-
-                              <input style="width:100%; text-align:center"  type="submit" value="Generate" name="generate" class="btn btn-fill btn-primary generate">
-                        </form>
-
-
-                            
-  
-                             
-                           
-    
-                            
-                       
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        <h3 class="card-title">proxys</h3>
-                        
-                    </div>
+                <div class="card-body">
                     
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <h5 class="card-category"> proxys generated</h5>
-                            <br>
-                           
-                            <div class="text-blocked proxy">
-                                
-                                {% for x in generated_proxy  %}
-                                <p> {{x.ip_address}} </p>
-                             
-                                {% endfor %}
-    
+                    <div class="table-responsive">
+                        <table class="table tablesorter " id="">
+                            <thead>
+                                <tr>
+                                  <th scope="col">time</th>
+                                  <th scope="col">username</th>
+                                  <th scope="col">ip_address</th>
+                                  <th scope="col">action</th>
+                                </tr>
+                              </thead>
                             
-                        </div>
-                        </div>
+                            <tbody id="display">
+                            
+                            
+                            
+
+                           
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    
+                    <h3 class="card-title"> Blocked websites</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <form method="POST" action="{% url 'home' %}" >
+                        {% csrf_token %}
+                            <div class="blocked-site">
+                                <input type="text" name="blocked" placeholder="website URL">
+                                <input type="submit" value="add" name="add_websites" class="btn btn-fill btn-primary">
+                            </div>
+                        </form>
+                        <div class="text-blocked">
+                            {% if blocked_websites %}
+                                {% for w in blocked_websites %}
+                                    <p href="{{ w.website_url}}">{{ w.website_url | replace }}</p>
+                                {% endfor %}
+                            {% else %}
+                                <p>No websites to display</p>
+                            {% endif %}
+
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h3 class="card-title">Generate proxys</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                    <form method="POST">
+                            {% csrf_token %}
+                            {{form2.as_p}}
+                        <div class="blocked-site">
+                            <input class="text" type="number" name="Duration" placeholder="Duration" required="required">
+                            <input class="text" type="number" name="Usage" placeholder="Usage" required="required">
+                        </div>
+                        <h5 class="card-category"> Authorized ip adddress</h5>
+                        <div class="select">
+                            <select name="ip_address">
+                                {% for  x in available_ips %}
+                                <option value={{x.Availaible_ip}}>{{x.Availaible_ip}}</option>
+                                {% endfor %}
+                             
+                            </select>
+                          </div>
+                          <br>
+
+                          <input style="width:100%; text-align:center"  type="submit" value="Generate" name="generate" class="btn btn-fill btn-primary generate">
+                    </form>
+
+
+                        
+
+                         
+                       
+
+                        
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h3 class="card-title">proxys</h3>
+                    
+                </div>
+                
+                <div class="card-body">
+                    <div class="chart-area">
+                        <h5 class="card-category"> proxys generated</h5>
+                        <br>
+                       
+                        <div class="text-blocked proxy">
+                            
+                            {% for x in generated_proxy  %}
+                            <p> {{x.ip_address}} </p>
+                         
+                            {% endfor %}
+
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
 
 {% endblock content %}
 
@@ -429,6 +325,36 @@
         demo.initDashboardPageCharts();
 
     });
+
+
+    $(document).ready(function(){
+
+        setInterval(function(){
+            $.ajax({
+                type:'GET',
+                url:"{% url 'getLogs' %}",
+                success:function(response){
+                    $("#display").empty();
+                    for (var key in response.logs)
+                    {
+                        console.log(response.logs[key].author);
+                        var temp="<tr><th scope='row'>"+response.logs[key].date+"</th><td>"+response.logs[key].username+"</td><td>"+response.logs[key].ip_address+"</td><td>"+response.logs[key].action+"</td></tr>";
+                        $("#display").append(temp);
+                    }
+
+
+                },
+                error:function(response){
+                    alert("NO DATA FOUND");
+                }
+            
+            });
+                
+            },1000);
+        
+    });
+
 </script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
 {% endblock javascripts %}

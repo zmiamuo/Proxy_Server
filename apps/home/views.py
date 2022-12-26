@@ -5,9 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .models import website,DurationUsage,Availaible_ip
+from .models import website,DurationUsage,Availaible_ip,logs_generated
 from django.shortcuts import redirect , render 
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.utils import timezone
 
 
 
@@ -33,11 +35,14 @@ def index(request):
         if duration and usage and ip_address:
             data2.save()
             return HttpResponseRedirect("/")
+            
+    generate_logs = logs_generated.objects.all()
 
 
 
 
-    context = {'segment': 'index',"blocked_websites":objects,"generated_proxy":objects2,"available_ips":objects3}
+
+    context = {'segment': 'index',"blocked_websites":objects,"generated_proxy":objects2,"available_ips":objects3,"generate_logs":generate_logs}
     html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 
@@ -80,3 +85,7 @@ def updateuser(request):
         user.save(force_update=True)
         html_template = loader.get_template('home/user.html')
         return render(request,'home/user.html')
+
+def getLogs(request):
+    query_set=logs_generated.objects.filter(author=request.user)
+    return JsonResponse({"logs":list(query_set.values())})

@@ -4,6 +4,7 @@ from django.contrib import admin
 from .models import website
 from .models import DurationUsage
 from .models import Availaible_ip
+from .models import logs_generated
 
 
 class Adminwebsite(admin.ModelAdmin):
@@ -25,3 +26,7 @@ class AdminAvailable_ip(admin.ModelAdmin):
 admin.site.register(Availaible_ip,AdminAvailable_ip)
 
 
+class Adminlogs_generated(admin.ModelAdmin):
+    model = logs_generated
+    list_display = ('id','date','username','ip_address','action')
+admin.site.register(logs_generated,Adminlogs_generated)

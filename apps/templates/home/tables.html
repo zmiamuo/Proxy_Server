@@ -32,7 +32,9 @@ th{
   text-align:left !important;
 
 }
-
+td{
+  text-align:center;
+}
 .time {
   margin-let:20px !important;
 }
@@ -53,125 +55,23 @@ th{
             <h4 class="card-title"> Simple Table</h4>
           </div>
           <div class="card-body">
-            <table class="table tablesorter " id="">
-                <thead class=" text-primary">
-                <tr>
-                    <th class="left_th"> 
-                        TIME
-                    </th>
-                    <th>
-                       USERNAME
-                    </th>
-                    <th class="left_ap">
-                        IP ADDRESS
-                    </th>
-                    <th  >
-                        ACTION
-                    </th>
-                </tr>
-                </thead>
+            
             </table>
             <div class="table-responsive">
                 <table class="table tablesorter " id="">
+                  <thead>
+                    <tr>
+                      <th scope="col">date</th>
+                      <th scope="col">username</th>
+                      <th scope="col">ip_address</th> 
+                      <th scope="col">action</th>
+                    </tr>
+                  </thead>
+                
                     
-                    <tbody>
+                    <tbody id="display">
                     
-                    <tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add" >
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                            <span >GET http://localhost:8000 tcp<span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                            <span >GET http://localhost:8000 tcp<span>
-                        </td>
-                    </tr><tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                          <span >GET http://localhost:8000 tcp<span>
-                          </td>
-                    </tr><tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                          <span >GET http://localhost:8000 tcp<span>
-                          </td>
-                    </tr>
-                    <tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                          <span >GET http://localhost:8000 tcp<span>
-                          </td>
-                    </tr>
-                    <tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                          <span >GET http://localhost:8000 tcp<span>
-                          </td>
-                    </tr>
-                    <tr>
-                        <td class="time">
-                            12:00:01:00:00:00
-                        </td>
-                        <td class="username">
-                            fresco anas
-                        </td>
-                        <td class="ip-add">
-                            127.0.0.1
-                        </td>
-                        <td class="text-right">
-                          <span >GET http://localhost:8000 tcp<span>
-                          </td>
-                    </tr>
+                    
 
                    
                     </tbody>
@@ -187,4 +87,33 @@ th{
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+$(document).ready(function(){
+
+  setInterval(function(){
+      $.ajax({
+          type:'GET',
+          url:"{% url 'getLogs' %}",
+          success:function(response){
+              $("#display").empty();
+              for (var key in response.logs)
+              {
+                  console.log(response.logs[key].author);
+                  var temp="<tr><th scope='row'>"+response.logs[key].date+"</th><td>"+response.logs[key].username+"</td><td>"+response.logs[key].ip_address+"</td><td>"+response.logs[key].action+"</td></tr>";
+                  $("#display").append(temp);
+              }
+
+
+          },
+          error:function(response){
+              alert("NO DATA FOUND");
+          }
+      
+      });
+          
+      },1000);
+  
+});
+</script>
+{% endblock javascripts %}
