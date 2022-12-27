@@ -85,7 +85,13 @@ def updateuser(request):
         user.save(force_update=True)
         html_template = loader.get_template('home/user.html')
         return render(request,'home/user.html')
-
+@login_required(login_url="/login/")
 def getLogs(request):
     query_set=logs_generated.objects.filter(author=request.user)
     return JsonResponse({"logs":list(query_set.values())})
+
+
+
+
+
+
