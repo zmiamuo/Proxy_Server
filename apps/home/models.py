@@ -34,9 +34,10 @@ class Availaible_ip(models.Model):
 
 class logs_generated(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    date=models.CharField(default=datetime.now().strftime("%H:%M:%S"),max_length=255)
-    username=models.CharField(max_length=50)
-    ip_address=models.CharField(max_length=50)
+    date=models.CharField(max_length=255)
+    ip_address_src=models.CharField(max_length=50)
+    ip_address_dst=models.CharField(max_length=50)
+
     action=models.CharField(max_length=255)
 
 

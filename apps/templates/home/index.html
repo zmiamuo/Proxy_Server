@@ -193,9 +193,9 @@
                             <thead>
                                 <tr>
                                   <th scope="col">time</th>
-                                  <th scope="col">username</th>
-                                  <th scope="col">ip_address</th>
-                                  <th scope="col">action</th>
+                                  <th scope="col">ip_source</th>
+                                  <th scope="col">ip_destination</th>
+                                  <th scope="col">Protocole </th>
                                 </tr>
                               </thead>
                             
@@ -236,7 +236,7 @@
                                 {% endfor %}
                             {% else %}
                                 <p>No websites to display</p>
-                            {% endif %}
+                            {% endif %} 
 
                             
                         </div>
@@ -338,7 +338,7 @@
                     for (var key in response.logs)
                     {
                         console.log(response.logs[key].author);
-                        var temp="<tr><th scope='row'>"+response.logs[key].date+"</th><td>"+response.logs[key].username+"</td><td>"+response.logs[key].ip_address+"</td><td>"+response.logs[key].action+"</td></tr>";
+                        var temp="<tr><th scope='row'>"+response.logs[key].date+"</th><td>"+response.logs[key].ip_address_src+"</td><td>"+response.logs[key].ip_address_dst+"</td><td>"+response.logs[key].action+"</td></tr>";
                         $("#display").append(temp);
                     }
 

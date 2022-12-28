@@ -10,6 +10,12 @@ from django.shortcuts import redirect , render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.utils import timezone
+from .generate_logs import generate_log
+import time
+import pyshark
+from datetime import  datetime
+
+
 
 
 
@@ -28,6 +34,31 @@ def index(request):
              data.save()
              return redirect(reverse(("home")))
     if request.method=='POST' and  'generate' in request.POST:
+
+        networkInterface = "Wi-Fi"
+
+        capture = pyshark.LiveCapture(interface=networkInterface)
+
+        print("listening on %s" % networkInterface)
+
+        for packet in capture.sniff_continuously(packet_count=1):
+
+    # adjusted output
+            localtime = time.asctime(time.localtime(time.time()))
+
+    # get packet content
+            protocol = packet.transport_layer  # protocol type
+            src_addr = packet.ip.src  # source address
+            src_port = packet[protocol].srcport  # source port
+            dst_addr = packet.ip.dst  # destination address
+            dst_port = packet[protocol].dstport
+
+
+            data=logs_generated(author=request.user,duration=str(localtime),ip_address_src=src_addr+":"+src_port,ip_address_dst=dst_addr+":"+dst_port,action=protocol)
+            print(protocol)
+            data.save()
+
+            
         duration=request.POST.get('Duration')
         usage=request.POST.get('Usage')
         ip_address=request.POST.get('ip_address')
@@ -35,6 +66,12 @@ def index(request):
         if duration and usage and ip_address:
             data2.save()
             return HttpResponseRedirect("/")
+
+        
+        
+
+        
+       
             
     generate_logs = logs_generated.objects.all()
 
@@ -82,10 +119,17 @@ def updateuser(request):
         lastname=request.POST.get('last_name')
         email=request.POST.get('email')
         user=User(id=id,username=username,email=email, first_name=firstname,last_name=lastname,password=password)
+        
         user.save(force_update=True)
         html_template = loader.get_template('home/user.html')
         return render(request,'home/user.html')
-
+@login_required(login_url="/login/")
 def getLogs(request):
     query_set=logs_generated.objects.filter(author=request.user)
     return JsonResponse({"logs":list(query_set.values())})
+
+
+
+
+
+

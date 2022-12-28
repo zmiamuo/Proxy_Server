@@ -28,5 +28,5 @@ admin.site.register(Availaible_ip,AdminAvailable_ip)
 
 class Adminlogs_generated(admin.ModelAdmin):
     model = logs_generated
-    list_display = ('id','date','username','ip_address','action')
+    list_display = ('id','date','ip_address_src','ip_address_dst','action')
 admin.site.register(logs_generated,Adminlogs_generated)
