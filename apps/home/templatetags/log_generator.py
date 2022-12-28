@@ -1,13 +1,15 @@
+from django import template
 import csv
 import random
 import time
 import pyshark
 from datetime import  datetime
+register=template.Library()
 
 
 
-
-def generate_logs():
+@register.filter
+def log_generator():
 
 
     filed_name = ["time", "ip_source", "ip_dest", "protocol"]
