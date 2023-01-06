@@ -13,6 +13,7 @@ from django.utils import timezone
 import time
 import pyshark
 from datetime import  datetime
+import csv
 
 
 
@@ -33,17 +34,31 @@ def index(request):
              data.save()
              return redirect(reverse(("home")))
     if request.method=='POST' and  'generate' in request.POST:
-
-       
-
-            
         duration=request.POST.get('Duration')
         usage=request.POST.get('Usage')
         ip_address=request.POST.get('ip_address')
         data2=DurationUsage(author=request.user,duration=duration,usage=usage,ip_address=ip_address)
         if duration and usage and ip_address:
             data2.save()
-            return HttpResponseRedirect("/")
+            
+
+        with open('C:/Users/fresco/Desktop/Proxy_Server/apps/home/data.csv', 'r') as csv_file:
+            print("helllooo")
+            reader = csv.reader(csv_file)
+            delimeter=next(reader)
+
+
+    # Iterate over each row of the CSV file and create a new model instance
+            for row in reader:
+                date=row[0]
+                ip_src=row[1]
+                ip_dst=row[2]
+                action=row[3]
+                logs=logs_generated(author=request.user,date=date,ip_address_src=ip_src,ip_address_dst=ip_dst,action=action)
+                logs.save()
+                print(logs)
+            
+
 
         
         
