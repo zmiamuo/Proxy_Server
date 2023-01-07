@@ -13,6 +13,7 @@ from django.utils import timezone
 import time
 import pyshark
 from datetime import  datetime
+import csv
 
 
 
@@ -33,38 +34,31 @@ def index(request):
              data.save()
              return redirect(reverse(("home")))
     if request.method=='POST' and  'generate' in request.POST:
-
-        networkInterface = "Wi-Fi"
-
-        capture = pyshark.LiveCapture(interface=networkInterface)
-
-        print("listening on %s" % networkInterface)
-
-        for packet in capture.sniff_continuously(packet_count=1):
-
-    # adjusted output
-            localtime = time.asctime(time.localtime(time.time()))
-
-    # get packet content
-            protocol = packet.transport_layer  # protocol type
-            src_addr = packet.ip.src  # source address
-            src_port = packet[protocol].srcport  # source port
-            dst_addr = packet.ip.dst  # destination address
-            dst_port = packet[protocol].dstport
-
-
-            data=logs_generated(author=request.user,duration=str(localtime),ip_address_src=src_addr+":"+src_port,ip_address_dst=dst_addr+":"+dst_port,action=protocol)
-            print(protocol)
-            data.save()
-
-            
         duration=request.POST.get('Duration')
         usage=request.POST.get('Usage')
         ip_address=request.POST.get('ip_address')
         data2=DurationUsage(author=request.user,duration=duration,usage=usage,ip_address=ip_address)
         if duration and usage and ip_address:
             data2.save()
-            return HttpResponseRedirect("/")
+            
+
+        with open('C:/Users/fresco/Desktop/Proxy_Server/apps/home/data.csv', 'r') as csv_file:
+            print("helllooo")
+            reader = csv.reader(csv_file)
+            delimeter=next(reader)
+
+
+    # Iterate over each row of the CSV file and create a new model instance
+            for row in reader:
+                date=row[0]
+                ip_src=row[1]
+                ip_dst=row[2]
+                action=row[3]
+                logs=logs_generated(author=request.user,date=date,ip_address_src=ip_src,ip_address_dst=ip_dst,action=action)
+                logs.save()
+                print(logs)
+            
+
 
         
         

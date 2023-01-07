@@ -21,7 +21,7 @@ class DurationUsage(models.Model):
     usage=models.IntegerField()
     ip_address=models.CharField(max_length=255)
     def __str__(self):
-        return self.author
+        return str(self.duration)
 
 
 class Availaible_ip(models.Model):
